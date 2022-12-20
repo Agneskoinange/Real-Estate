@@ -26,7 +26,7 @@ const Property = ({property: {coverPhoto, price, rentFrequency, rooms, title, ba
 
                         </Box>
 
-                        <Text fontWeight="bold" fontSize="lg" >AED {millify(price)}{rentFrequency && `/${rentFrequency}`}</Text>
+                        <Text fontWeight="bold" fontSize="lg" >USD {millify(price)}{rentFrequency && `/${rentFrequency}`}</Text>
                     </Flex>
 
                     <Box>
