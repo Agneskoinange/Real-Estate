@@ -44,6 +44,12 @@ const Property = ({property: {coverPhoto, price, rentFrequency, rooms, title, ba
                 </Text>
             </Box>
         </Flex>
+
+
+
+
+
+        
     
     </Link>
 
