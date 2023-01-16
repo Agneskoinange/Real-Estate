@@ -9,13 +9,13 @@ import noresult from "../assets/images/noresult.svg"
 import { fetchApi, baseUrl } from "../utils/fetchApi";
 
 
-const Search = ({properties}) => {
+const Search = ({ properties }) => {
     const [searchFilters, setSearchFilters] = useState(false);
     const router = useRouter();
 
     return (
         <Box>
-            <Flex cusrosr="pointer" bg="gray.100" borderBottom="1px" borderColor="gray.200" p="2" fontWeight="black" fontSize="lg" justifyContent="center" alignItems="center" onClick={()=> setSearchFilters((prevFilters) => !prevFilters)}>
+            <Flex  onClick={() => setSearchFilters(!searchFilters)} cursor="pointer" bg="gray.100" borderBottom="1px" borderColor="gray.200" p="2" fontWeight="black" fontSize="lg" justifyContent="center" alignItems="center">
 
             
                 <Text>
@@ -45,18 +45,18 @@ const Search = ({properties}) => {
 
             
         </Box>
-    )
-}
-
-
-export default Search;
+    );
+};
 
 
 
-export async function getServerSideProps( query ) {
 
-    const purpose = query.purpose  || "for-rent"
-    const rentFrequency = query.rentFrequency || "yearly"
+
+
+export async function getServerSideProps({ query }) {
+
+    const purpose = query.purpose  || "for-rent";
+    const rentFrequency = query.rentFrequency || "yearly";
     const minPrice = query.minPrice || '0';
     const maxPrice = query.maxPrice || '1000000';
     const roomsMin = query.roomsMin || '0';
@@ -68,8 +68,8 @@ export async function getServerSideProps( query ) {
 
 
 
-    const data = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`);
-    
+    // const data = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`);
+    const data = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${minPrice}&priceMax=${maxPrice}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`);
   
     return {
       props: {
@@ -78,3 +78,5 @@ export async function getServerSideProps( query ) {
       },
     };
   }
+
+  export default Search;
